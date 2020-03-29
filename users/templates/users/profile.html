@@ -3,13 +3,23 @@
 {% block content %}
     <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.profile_img.url }}">
+        <img class="rounded d-block account-img" src="{{ user.profile.profile_img.url }}">
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
         </div>
       </div>
-      <!-- FORM HERE -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Melodia Profile Info</legend>
+                {{ u_form|crispy}}
+                {{ p_form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update Profile</button>
+            </div>
+        </form>
     </div>
 {% endblock content %}
 

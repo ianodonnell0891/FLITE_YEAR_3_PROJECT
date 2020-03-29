@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'newsfeed.apps.NewsfeedConfig',
     'crispy_forms',
+    'django_google_maps',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -132,3 +133,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'newsfeed-home'
 LOGIN_URL = 'login'
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyC86jOoP3Exe7NeVWmgckjT0Cwf8owy6OI'
