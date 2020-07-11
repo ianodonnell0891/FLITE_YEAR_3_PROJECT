@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_google_maps',
     'users.apps.UsersConfig',
+    'googlemap.apps.GooglemapConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,12 +79,12 @@ WSGI_APPLICATION = 'FLITE_YEAR_3_PROJECT.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'Mals12-power',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
@@ -141,7 +142,19 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('USER_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
-API_KEY = 'AIzaSyC86jOoP3Exe7NeVWmgckjT0Cwf8owy6OI'
+GOOGLE_MAPS_API_KEY = 'AIzaSyC86jOoP3Exe7NeVWmgckjT0Cwf8owy6OI'
+
+import os
+if os.name == 'nt':
+    import platform
+    OSGEO4W = r"C:\OSGeo4W"
+    if '64' in platform.architecture()[0]:
+        OSGEO4W += "64"
+    assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
+    os.environ['OSGEO4W_ROOT'] = OSGEO4W
+    os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
+    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
 
 
 

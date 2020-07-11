@@ -19,6 +19,8 @@ from django.urls import path, include
 from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
+from googlemap import views as map_views
+from messagingapp import views as message_views
 
 
 urlpatterns = [
@@ -36,7 +38,8 @@ urlpatterns = [
          auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),
          name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
-         name='password_reset_complete')
+         name='password_reset_complete'),
+    path('mapsearch/', map_views.mapsearch, name='googlemap/map_default.html')
 ]
 
 if settings.DEBUG:
